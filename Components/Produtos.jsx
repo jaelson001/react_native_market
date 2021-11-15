@@ -41,7 +41,6 @@ export default function Produtos(props){
         }else{
             setCarrinho(novo.concat(carrinho));
         }
-        console.log(carrinho);
     };
 
 	return(
@@ -56,7 +55,7 @@ export default function Produtos(props){
                     <Text style={{padding:10, width:"100%", textAlign:"center"}} h1>R$ {item.cout}</Text>
                     <Button 
                         type="clear" 
-                        title="PEDIR UM" 
+                        title="PEDIR" 
                         buttonStyle={{width:"50%", padding:15, marginLeft:"25%"}} 
                         titleStyle={{color:'#84472f'}}
                         onPress={() =>addToCart(i)}

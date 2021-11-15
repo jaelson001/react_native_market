@@ -11,7 +11,6 @@ export default function Carrinho(self){
 
 	useEffect(() =>{
 		if(!loaded){
-            console.log(carrinho);
 			setLoaded(true);
 		}
 		return;
