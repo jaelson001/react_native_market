@@ -6,6 +6,7 @@ import Tabs from "./Layout/Tabs";
 import TabContent from "./Layout/TabContent";
 import Produtos from "./Components/Produtos.jsx";
 import Carrinho from "./Components/Carrinho.jsx";
+import Checkout from "./Components/Checkout.jsx";
 import {GlobalProvider} from "./Components/Global";
 export default function App() {
    const [index, setIndex] = useState(0);
@@ -27,6 +28,8 @@ export default function App() {
             <TabContent>
                <Text h3 style={styles.sectionTitle} >Carrinho</Text>
                <Carrinho carrinho={carrinho, mudarCarrinho} />
+               <Text h3 style={styles.sectionTitle} >Pagamento</Text>
+               <Checkout />
             </TabContent>
             <TabContent backgroundColor="#afafaf">
                <Text h3 style={styles.sectionTitle} >Perfil</Text>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-import { Text, Button } from 'react-native-elements';
-import Card from "./Card";
+import { StyleSheet, View, Image, Pressable, Alert } from 'react-native';
+import { Text, Button, Avatar, ListItem, Icon } from 'react-native-elements';
+import Card, {Content} from "./Card";
 import {GlobalContext} from "./Global";
 
 export default function Carrinho(self){
@@ -15,11 +15,22 @@ export default function Carrinho(self){
 		}
 		return;
 	});
+
+    const createTwoButtonAlert = () =>
+    Alert.alert(
+      "Carrinho",
+      "Item Removido",
+      [
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    );
+
     var removeFromCart = (indice) =>{
         var novo = carrinho.filter((item, index) =>{
             return index != indice;
         });
         setCarrinho(novo);
+        createTwoButtonAlert();
     };
 
 	return(
@@ -29,17 +40,22 @@ export default function Carrinho(self){
                     var item = JSON.parse(JSON.stringify(lista));
                     return (
                         <Card key={i}>
-                            <Text h4>{item.nom}</Text>
-                            <Text style={{padding:10}}>{item.ingredients}</Text>
-                            <Text style={{padding:10}}>{item.description}</Text>
-                            <Text style={{padding:10, width:"100%", textAlign:"center"}} h1>R$ {item.cout}</Text>
-                            <Button 
-                                type="clear" 
-                                title="Remover" 
-                                buttonStyle={{width:"50%", padding:15, marginLeft:"25%"}} 
-                                titleStyle={{color:'#84472f'}}
-                                onPress={() =>removeFromCart(i)}
-                            ></Button>
+                            <Content>
+                                <Pressable onPress={() =>removeFromCart(i)}>
+                                    <Text style={{width:"100%",textAlign:"right"}}>
+                                        <Icon type='ionicon' name='trash'  color='red' />
+                                    </Text>
+                                </Pressable >
+                            <ListItem>
+                                <Avatar size="large" rounded source={{uri:'https://campovivo.com.br/wp-content/uploads/2017/12/cafe-xicara.jpg'}} />
+                                <ListItem.Content>
+                                    <ListItem.Title><Text style={{fontWeight:"bold"}}>{item.nom}</Text></ListItem.Title>
+                                    <ListItem.Subtitle > 
+                                        R$ {item.cout} 
+                                    </ListItem.Subtitle>
+                                </ListItem.Content>
+                            </ListItem>
+                            </Content>
                         </Card>
                     );
                 }
