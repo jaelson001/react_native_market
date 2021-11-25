@@ -1,5 +1,6 @@
 import { StyleSheet, ScrollView, Dimensions, RefreshControl} from 'react-native';
 import React, {useState, useCallback} from 'react';
+import Snackbar from "./Snackbar";
 /**
 * @access public
 * @return React.FC Tabs 
@@ -8,17 +9,19 @@ import React, {useState, useCallback} from 'react';
 export default function TabContent(self){
 	const [largura, setLargura] = useState(Dimensions.get('screen').width);
 	  const [refreshing, setRefreshing] = React.useState(false);
+	  const [visible, toggleVisible] = React.useState(false);
 	  const wait = (timeout) => {
 		  return new Promise(resolve => setTimeout(resolve, timeout));
 		}
 	  const onRefresh = React.useCallback(() => {
 	    setRefreshing(true);
-	    setLargura(largura);
+	    toggleVisible(!visible);
 	    setRefreshing(false);
 	  }, []);
 
 
 	return(
+		<>
 		<ScrollView 
 			contentContainerStyle={{
 				width:largura, 
@@ -35,5 +38,7 @@ export default function TabContent(self){
 			>
 			{self.children}
 		</ScrollView>
+		<Snackbar text="Atualizado" visible={visible} toggleState={toggleVisible} />
+		</>
 	);
 }

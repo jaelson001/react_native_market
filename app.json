@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react_native_market",
-    "slug": "react_native_market",
+    "name": "React native simple market",
+    "slug": "react-native-simple-market",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Simple marketplace made in react-native"
   }
 }

@@ -7,14 +7,10 @@ import TabContent from "./Layout/TabContent";
 import Produtos from "./Components/Produtos.jsx";
 import Carrinho from "./Components/Carrinho.jsx";
 import Checkout from "./Components/Checkout.jsx";
+import Perfil from "./Components/Perfil.jsx";
 import {GlobalProvider} from "./Components/Global";
 export default function App() {
    const [index, setIndex] = useState(0);
-   const [carrinho, setCarrinho] = useState([]);
-
-   var mudarCarrinho = (e) => {
-      setCarrinho(e);
-   }
    return (
       <View style={styles.container}>
       <GlobalProvider>
@@ -23,16 +19,17 @@ export default function App() {
          <Tabs titles={["Produtos","Carrinho", "Perfil"]} backgroundColor="#84472f">
             <TabContent>
                <Text h3 style={styles.sectionTitle} >Produtos</Text>
-               <Produtos carrinho={carrinho, mudarCarrinho} />
+               <Produtos />
             </TabContent>
             <TabContent>
                <Text h3 style={styles.sectionTitle} >Carrinho</Text>
-               <Carrinho carrinho={carrinho, mudarCarrinho} />
+               <Carrinho />
                <Text h3 style={styles.sectionTitle} >Pagamento</Text>
                <Checkout />
             </TabContent>
-            <TabContent backgroundColor="#afafaf">
+            <TabContent >
                <Text h3 style={styles.sectionTitle} >Perfil</Text>
+               <Perfil />
             </TabContent>
          </Tabs>
       </GlobalProvider>

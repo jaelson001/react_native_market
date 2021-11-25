@@ -11,8 +11,12 @@ export const GlobalContext = createContext({});
 export const GlobalProvider = (self)=>{
 	//variaveis que vão ser enxergadas globalmente
 	const [carrinho, setCart] = useState([]);
-	const [usuario, setUser] = useState([]);
 	const [loaded, setLoaded] = useState(false);
+	const [usuario, setUser] = useState({
+		nome:"",
+		endereco:"",
+		referencia:"",
+	});
 
 	//use effect é executado só na inicialização pra buscar as variaveis globais do LocalStorage
 	useEffect(async () =>{

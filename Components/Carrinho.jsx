@@ -36,30 +36,30 @@ export default function Carrinho(self){
 	return(
 		<>
 			{carrinho === []  ? <Text h4 style={{textAlign:"center", paddingTop:30, width:"100%"}}>Carrinho Vazio!</Text>
-                : carrinho.map((lista, i) => {
-                    var item = JSON.parse(JSON.stringify(lista));
-                    return (
-                        <Card key={i}>
-                            <Content>
-                                <Pressable onPress={() =>removeFromCart(i)}>
-                                    <Text style={{width:"100%",textAlign:"right"}}>
-                                        <Icon type='ionicon' name='trash'  color='red' />
-                                    </Text>
-                                </Pressable >
-                            <ListItem>
-                                <Avatar size="large" rounded source={{uri:'https://campovivo.com.br/wp-content/uploads/2017/12/cafe-xicara.jpg'}} />
-                                <ListItem.Content>
-                                    <ListItem.Title><Text style={{fontWeight:"bold"}}>{item.nom}</Text></ListItem.Title>
-                                    <ListItem.Subtitle > 
-                                        R$ {item.cout} 
-                                    </ListItem.Subtitle>
-                                </ListItem.Content>
-                            </ListItem>
-                            </Content>
-                        </Card>
-                    );
-                }
-            )}
+                : <Card >
+                    <Content>
+                        {carrinho.map(
+                            (lista, i) => {
+                                var item = JSON.parse(JSON.stringify(lista));
+                                return (
+                                    <ListItem key={i} bottomDivider>
+                                        <Avatar size="large" rounded source={{uri:'https://campovivo.com.br/wp-content/uploads/2017/12/cafe-xicara.jpg'}} />
+                                        <ListItem.Content>
+                                            <ListItem.Title><Text style={{fontWeight:"bold"}}>{item.nom}</Text></ListItem.Title>
+                                            <ListItem.Subtitle > R$ {item.cout} </ListItem.Subtitle>
+                                        </ListItem.Content>
+                                        <Pressable onPress={() =>removeFromCart(i)}>
+                                            <Text style={{width:"100%",textAlign:"right"}}>
+                                                <Icon type='ionicon' name='trash'  color='#b02020' />
+                                            </Text>
+                                        </Pressable >
+                                    </ListItem>
+                                );
+                            }
+                        )}
+                    </Content>
+                </Card>
+            }
 		</>
 	);
 }
